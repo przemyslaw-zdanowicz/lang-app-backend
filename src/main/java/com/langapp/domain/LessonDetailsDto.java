@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.util.List;
 import java.util.UUID;
 
@@ -12,11 +11,16 @@ import java.util.UUID;
 @AllArgsConstructor
 @Data
 @Builder
-public class LessonDto {
+public class LessonDetailsDto {
     private UUID id;
     private String title;
     private String description;
     private Level level;
-    private List<UUID> wordIds;
-    private List<UUID> textIds;
+
+    private List<WordDto> words;
+    private TextDto text;
+
+    private List<RevisionDto> revisionsToReview;
 }
+
+

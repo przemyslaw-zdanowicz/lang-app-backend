@@ -1,0 +1,38 @@
+package com.langapp.domain;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Builder
+@Entity
+@Table(name = "ACHIEVEMENTS")
+public class Achievement {
+    @Id
+    @Column(name = "ID", columnDefinition = "UUID")
+    private UUID id;
+
+    @Column(name = "NAME")
+    private String name;
+
+    @Column(name = "DESCRIPTION")
+    private String description;
+
+    @Column(name = "IMAGE_URL")
+    private String imageUrl;
+
+    @Column(name = "UNLOCKED_AT")
+    private LocalDateTime unlockedAt;
+
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
+    private User user;
+}

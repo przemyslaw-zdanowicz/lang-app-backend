@@ -18,5 +18,4 @@ public class WordDto {
     private String audioUrl;
     private Level level;
     private UUID categoryId;
-    private UUID sentenceId;
 }
