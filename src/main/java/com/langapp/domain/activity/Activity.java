@@ -61,4 +61,7 @@ public class Activity {
     @OneToOne(mappedBy = "activity", cascade = CascadeType.ALL)
     private MemoryActivity memoryActivity;
 
+    @OneToOne(mappedBy = "activity", cascade = CascadeType.ALL)
+    private ReviewActivity reviewActivity;
+
 }
