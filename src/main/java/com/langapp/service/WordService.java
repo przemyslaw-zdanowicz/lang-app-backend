@@ -2,26 +2,40 @@ package com.langapp.service;
 
 import com.langapp.domain.category.Category;
 import com.langapp.domain.word.Word;
-import com.langapp.domain.word.dto.WordDto;
 import com.langapp.exception.CategoryNotFoundException;
-import com.langapp.mapper.WordMapper;
+import com.langapp.exception.WordNotFoundException;
 import com.langapp.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
 public class WordService {
 
     private final WordDbService dbService;
-    private final WordMapper mapper;
     private final CategoryRepository categoryRepository;
 
-    public Word createWord(WordDto dto) throws CategoryNotFoundException {
-        Category category = categoryRepository.findById(dto.getCategoryId()).orElseThrow(CategoryNotFoundException::new);
+    public Word createWordWithCategory(Word word) throws CategoryNotFoundException {
+        Category category = categoryRepository.findById(word.getCategory().getId())
+                .orElseThrow(CategoryNotFoundException::new);
 
-        Word word = mapper.mapToWord(dto, category);
+        word.setCategory(category);
 
         return dbService.saveWord(word);
+    }
+
+    public Word getWord(UUID id) throws WordNotFoundException {
+        return dbService.getWord(id).orElseThrow(WordNotFoundException::new);
+    }
+
+    public List<Word> getWords() {
+        return dbService.getWords();
+    }
+
+    public void deleteWord(UUID id) {
+        dbService.deleteWord(id);
     }
 }

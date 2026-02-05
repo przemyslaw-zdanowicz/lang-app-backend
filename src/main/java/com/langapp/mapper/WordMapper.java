@@ -1,6 +1,5 @@
 package com.langapp.mapper;
 
-import com.langapp.domain.category.Category;
 import com.langapp.domain.word.Word;
 import com.langapp.domain.word.dto.WordDto;
 import org.springframework.stereotype.Component;
@@ -11,7 +10,7 @@ import java.util.stream.Collectors;
 @Component
 public class WordMapper {
 
-    public Word mapToWord(final WordDto wordDto, final Category category) {
+    public Word mapToWord(final WordDto wordDto) {
         return Word.builder()
                 .id(wordDto.getId())
                 .word(wordDto.getWord())
@@ -19,7 +18,6 @@ public class WordMapper {
                 .imageUrl(wordDto.getImageUrl())
                 .audioUrl(wordDto.getAudioUrl())
                 .level(wordDto.getLevel())
-                .category(category)
                 .build();
     }
 

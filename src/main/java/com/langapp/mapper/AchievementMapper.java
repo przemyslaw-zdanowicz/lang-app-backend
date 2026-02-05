@@ -2,7 +2,6 @@ package com.langapp.mapper;
 
 import com.langapp.domain.achievement.Achievement;
 import com.langapp.domain.achievement.dto.AchievementDto;
-import com.langapp.domain.user.User;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -11,14 +10,13 @@ import java.util.stream.Collectors;
 @Component
 public class AchievementMapper {
 
-    public Achievement mapToAchievement(final AchievementDto achievementDto, final User user) {
+    public Achievement mapToAchievement(final AchievementDto achievementDto) {
         return Achievement.builder()
                 .id(achievementDto.getId())
                 .name(achievementDto.getName())
                 .description(achievementDto.getDescription())
                 .imageUrl(achievementDto.getImageUrl())
                 .unlockedAt(achievementDto.getUnlockedAt())
-                .user(user)
                 .build();
     }
 

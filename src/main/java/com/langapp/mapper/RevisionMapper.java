@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 @Component
 public class RevisionMapper {
 
-    public Revision mapToRevision(final RevisionDto revisionDto, final Word word, final User user) {
+    public Revision mapToRevision(final RevisionDto revisionDto) {
         return Revision.builder()
                 .id(revisionDto.getId())
                 .correctCount(revisionDto.getCorrectCount())
@@ -20,8 +20,6 @@ public class RevisionMapper {
                 .created(revisionDto.getCreated())
                 .lastReviewed(revisionDto.getLastReviewed())
                 .nextReview(revisionDto.getNextReview())
-                .word(word)
-                .user(user)
                 .build();
     }
 
